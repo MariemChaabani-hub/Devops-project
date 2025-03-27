@@ -4,8 +4,8 @@ services:
     image: mysql:5.7
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD: ""  # Leave empty as per your config
-      MYSQL_DATABASE: db       # Matches your spring.datasource.url
+      MYSQL_ROOT_PASSWORD: "root"
+      MYSQL_DATABASE: db
     ports:
       - "3306:3306"
     volumes:
