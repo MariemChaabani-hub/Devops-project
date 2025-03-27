@@ -14,7 +14,7 @@ services:
   app-tpfoyer:
     depends_on:
       - mysqldb
-    image: liwaayari/tp-foyer:latest  # Replace with your Docker Hub repo
+    image: liwaayari/tp-foyer:latest
     build:
       context: .
       dockerfile: Dockerfile

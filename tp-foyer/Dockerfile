@@ -1,4 +1,4 @@
-FROM openjdk:17
-WORKDIR /app
-COPY target/tp-foyer-5.0.0.jar app.jar
-CMD ["java", "-jar", "app.jar"]
+FROM openjdk:17-jdk-apline
+EXPOSE 8089
+COPY target/tp-foyer-5.0.0.jar tp-foyer-5.0.0.jar
+ENTRYPOINT ["java", "-jar", "/tp-foyer-5.0.0.jar"]
