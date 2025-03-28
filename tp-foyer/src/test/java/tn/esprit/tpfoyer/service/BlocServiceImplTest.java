@@ -8,7 +8,9 @@ import org.mockito.MockitoAnnotations;
 import tn.esprit.tpfoyer.entity.Bloc;
 import tn.esprit.tpfoyer.repository.BlocRepository;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -28,6 +30,13 @@ class BlocServiceImplTest {
 
     @Test
     void testRetrieveAllBlocs() {
+        // Arrange
+        List<Bloc> mockBlocs = Arrays.asList(
+                new Bloc(1L, "Bloc A", 100),
+                new Bloc(2L, "Bloc B", 200)
+        );
+        when(blocRepository.findAll()).thenReturn(mockBlocs);
+
         // Act
         List<Bloc> result = blocService.retrieveAllBlocs();
 
@@ -41,6 +50,9 @@ class BlocServiceImplTest {
     void testRetrieveBloc() {
         // Arrange
         Long blocId = 1L;
+        Bloc mockBloc = new Bloc(blocId, "Bloc A", 100);
+        when(blocRepository.findById(blocId)).thenReturn(Optional.of(mockBloc));
+
         // Act
         Bloc result = blocService.retrieveBloc(blocId);
 
@@ -54,6 +66,9 @@ class BlocServiceImplTest {
     void testAddBloc() {
         // Arrange
         Bloc newBloc = new Bloc( "New Bloc", 300);
+        Bloc savedBloc = new Bloc(1L, "New Bloc", 300); // Simulate assigning an ID
+        when(blocRepository.save(newBloc)).thenReturn(savedBloc);
+
         // Act
         Bloc result = blocService.addBloc(newBloc);
 
@@ -62,7 +77,6 @@ class BlocServiceImplTest {
         assertNotNull(result.getIdBloc());
         assertEquals("New Bloc", result.getNomBloc());
     }
-
 
     @Test
     void testRemoveBloc() {
@@ -75,5 +89,4 @@ class BlocServiceImplTest {
         // Assert
         verify(blocRepository, times(1)).deleteById(blocId); // Verify that deleteById was called
     }
-
 }
