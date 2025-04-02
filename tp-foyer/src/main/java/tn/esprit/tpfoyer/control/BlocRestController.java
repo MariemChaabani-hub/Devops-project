@@ -10,6 +10,8 @@ import tn.esprit.tpfoyer.service.IBlocService;
 
 import java.util.List;
 
+
+
 @Tag(name = "Gestion Bloc pour l'équipe 4DS9")
 @RestController
 @AllArgsConstructor
@@ -17,6 +19,10 @@ import java.util.List;
 public class BlocRestController {
 
     IBlocService blocService;
+
+    public BlocRestController() {
+
+    }
 
 
     //http://localhost:8089/tpfoyer/bloc/retrieve-all-blocs
