@@ -1,11 +1,8 @@
-# Utilisation de l'image OpenJDK 11 depuis Docker Hub
+# Utilisation de l'image de base OpenJDK
 FROM openjdk:11-jdk-slim
 
-# Exposer le port de l'application (modifie si nécessaire)
-EXPOSE 8080
-
-# Ajouter le fichier JAR généré dans le conteneur
-ADD target/tp-foyez.jar tp-foyez.jar
+# Copie du fichier JAR généré dans l'image
+ADD ./target/tp-foyer-5.0.0.jar app.jar
 
 # Commande pour exécuter l'application
-ENTRYPOINT ["java", "-jar", "/tp-foyez.jar"]
+ENTRYPOINT ["java", "-jar", "app.jar"]
