@@ -24,6 +24,17 @@ public class Universite {
     @OneToOne(cascade = CascadeType.ALL)
     Foyer foyer;
 
+    public Universite(long idUniversite, String nomUniversite, String adresse) {
+        this.idUniversite = idUniversite;
+        this.nomUniversite = nomUniversite;
+        this.adresse = adresse;
+    }
+
+    public Universite(String nomUniversite, String adresse) {
+        this.nomUniversite = nomUniversite;
+        this.adresse = adresse;
+    }
+
 }
 
 
