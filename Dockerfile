@@ -1,8 +1,67 @@
-# Utilisation de l'image de base OpenJDK
-FROM openjdk:11-jdk-slim
+FROM openjdk:17
 
-# Copie du fichier JAR généré dans l'image
-ADD ./target/tp-foyer-5.0.0.jar app.jar
+# Exposer le port 8089
+EXPOSE 8089
 
-# Commande pour exécuter l'application
-ENTRYPOINT ["java", "-jar", "app.jar"]
+# Copier le fichier JAR généré dans le conteneur
+COPY tp-foyer/target/tp-foyer-5.0.0.jar /tp-foyer-5.0.0.jar
+
+# Commande d'entrée pour démarrer l'application
+ENTRYPOINT ["java", "-jar", "/tp-foyer-5.0.0.jar"]
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
