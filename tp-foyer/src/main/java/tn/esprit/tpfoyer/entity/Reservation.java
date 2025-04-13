@@ -38,6 +38,11 @@ public class Reservation {
     Set<Etudiant> etudiants;
 
 
+    public Reservation(String idReservation, Date anneeUniversitaire, boolean estValide) {
+        this.idReservation = idReservation;
+        this.anneeUniversitaire = anneeUniversitaire;
+        this.estValide = estValide;
+    }
 
 
     /*@ToString.Exclude

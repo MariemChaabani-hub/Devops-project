@@ -19,7 +19,7 @@ services:
   app-tpfoyer:
     depends_on:
       - mysqldb
-    image: liwaayari/tp-foyer:latest
+    image: raniakhedri/tp-foyer:latest
     build:
       context: .
       dockerfile: Dockerfile
