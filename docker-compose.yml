@@ -40,13 +40,12 @@ services:
     container_name: prometheus
     ports:
       - "9090:9090"
-    volumes:
-      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Monter le fichier prometheus.yml
     restart: always
     networks:
       - app-network
 
 volumes:
   db-data:  # Volume pour MySQL
+
 networks:
   app-network:  # Créer un réseau personnalisé pour relier les services entre eux
