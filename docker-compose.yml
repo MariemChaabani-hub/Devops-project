@@ -4,14 +4,14 @@ services:
     image: mysql:5.7
     restart: unless-stopped
     environment:
-      MYSQL_ROOT_PASSWORD:  # Pas de mot de passe
+      MYSQL_ROOT_PASSWORD: # Pas de mot de passe
       MYSQL_DATABASE: db
     ports:
       - "3306:3306"
     volumes:
       - db-data:/var/lib/mysql
     healthcheck:
-      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root" ]  # Pas de mot de passe
+      test: [ "CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root" ] # Pas de mot de passe
       interval: 10s
       timeout: 5s
       retries: 5
@@ -29,11 +29,24 @@ services:
     environment:
       SPRING_DATASOURCE_URL: jdbc:mysql://mysqldb:3306/db?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC
       SPRING_DATASOURCE_USERNAME: root
-      SPRING_DATASOURCE_PASSWORD:  # Pas de mot de passe
+      SPRING_DATASOURCE_PASSWORD: # Pas de mot de passe
       SPRING_JPA_HIBERNATE_DDL_AUTO: update
       SPRING_JPA_PROPERTIES_HIBERNATE_DIALECT: org.hibernate.dialect.MySQLDialect
       SPRING_JPA_SHOW_SQL: "true"
       SERVER_PORT: 8089
 
+  prometheus:
+    image: prom/prometheus
+    container_name: prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml  # Monter le fichier prometheus.yml
+    restart: always
+    networks:
+      - app-network
+
 volumes:
-  db-data:
+  db-data:  # Volume pour MySQL
+networks:
+  app-network:  # Créer un réseau personnalisé pour relier les services entre eux
